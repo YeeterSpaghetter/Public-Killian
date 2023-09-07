@@ -11,13 +11,18 @@ import os, sys
 import runpy
 from importlib import util
 from tokenize import *
+import pygame
 
 def YNquestion(questionString): 
     global answer 
     def yes_command(): 
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play()
         answer.set('yes') 
         window.destroy() 
-    def no_command(): 
+    def no_command():
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play() 
         answer.set('no')
         window.destroy()
     
@@ -46,6 +51,8 @@ boots = 'Well Worn Boots'
 armor = 1
 inventory = ["Water(+5 energy)", "Meat(+6 health)"]
 
+pygame.mixer.init()
+
 def fight(enemy):
     
     def endTurn():
@@ -53,6 +60,8 @@ def fight(enemy):
         
         
     def enemies(enemy):
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play()
         if enemy == 'goobly':
             global eHealth
         eHealth = 10
@@ -72,7 +81,9 @@ def fight(enemy):
             global damage
             damage = 5
             
-    def att(health, enemy, eHealth): 
+    def att(health, enemy, eHealth):
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play() 
         endTurn()
         attPwr(weapon)
         eHealth -= damage
@@ -89,6 +100,8 @@ def fight(enemy):
             damage = 10
             
     def mag(health, enemy, eHealth): 
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play()
         endTurn()
         magPwr(necklace)
         eHealth -= damage 
@@ -160,6 +173,8 @@ def fight(enemy):
             dodge = random.choice(['y','y','y','n','n','n']) 
             
     def flee(enemy, boots):
+        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+        pygame.mixer.music.play()
         if boots == 'Well Worn Boots':
             print('You have a 30% chance to escape.')
         if enemy != 'gBoss': 
@@ -189,9 +204,8 @@ def fight(enemy):
             
                 def exit():
                     fightWindow.destroy()
-                
-                def bananer():
-                    file_globals = runpy.run_path("App Adventure\Tkinter_rpg_start.py")
+                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+                    pygame.mixer.music.play()
                     
                 class python3Execfile(object):
                     def _get_file_encoding(self, filename):
@@ -209,18 +223,23 @@ def fight(enemy):
                             contents += "\n"
                             exec(contents, globals, globals)
                                 
-                def goobly():
-                    spec = util.spec_from_file_location('Goobly.py', 'App Adventure\Goobly.py')
+                def bananer():
+                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+                    pygame.mixer.music.play()    
+                    spec = util.spec_from_file_location('Tkinter_rpg_start.py', 'App Adventure\Tkinter_rpg_start.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
-                    return module    
+                    return module
                     
+                def sound():
+                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
+                    pygame.mixer.music.play()
                     
                 menu = Menu(fightWindow)
                 file = Menu(menu, tearoff=OFF)
                 Other_Battles = Menu(menu, tearoff=OFF)
                 file.add_command(label='Close Program', command=exit)
-                Other_Battles.add_command(label='Fight Bananer', command=bananer)
+                Other_Battles.add_command(label='Fight Bananer', command= bananer)
                 Other_Battles.add_command(label='Fight Goblin', )
                 Other_Battles.add_command(label='Fight Bloober', )
                 Other_Battles.add_command(label='Fight Yorble', )   
