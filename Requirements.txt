@@ -1,0 +1,16 @@
+# Requirements
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from _typeshed import Self
+from tkinter import * 
+import tkinter as tk
+import random 
+import tkinter.filedialog
+import pygame
+from PIL import Image, ImageSequence
+import time
+import os, sys
+import runpy
+from importlib import util
+from tokenize import *
