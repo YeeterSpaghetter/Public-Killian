@@ -226,21 +226,24 @@ def fight(enemy):
                 pyexec = sys.executable
 
                 def story():
+                    storyWindow = tk.Tk()
+                    storyWindow.geometry('1080x120')
+                    storyWindow.title('Story')
+                
+                    storyLabel1 = Label(storyWindow, text='Long ago, in a small village in Russia,')
+                    storyLabel1.grid(row=1, column=1)
                     
                     def go():
                         time.sleep(1)
-                        storyLabel1.config(storyWindow, text="You were a young boy who often ran around the woods to caese your bordedom,")
-                        storyLabel1.grid(row=1, column=1)
+                        storyLabel2 = Label(storyWindow, text="You were a young boy who often ran around the woods to caese your bordedom,")
+                        storyLabel2.grid(row=1, column=2)
                         continueButton1.destroy
                     def go2():
                         time.sleep(1)
-                        storyLabel1.config(storyWindow, text='One day when you were doing this, you fell down into a bush,')
-                    
-                    storyWindow = tk.Tk()
-                    storyWindow.geometry('330x120')
-                    storyWindow.title('Story')
-                    storyLabel1 = Label(storyWindow, text='Long ago, in a small village in Russia,')
-                    storyLabel1.grid(row=1, column=1)
+                        storyLabel3 = Label(storyWindow, text='One day when you were doing this, you fell down into a bush,')
+                        storyLabel3.grid(row=1, column=3)
+                        continueButton2.destroy
+                        
                     continueButton1 = Button(storyWindow, text='Continue1', command=go)
                     continueButton1.grid(row=2, column=1)
                     continueButton2 = Button(storyWindow, text='Continue2', command=go2)
