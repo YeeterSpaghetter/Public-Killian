@@ -321,6 +321,9 @@ def fight(enemy):
                 Enemy_sprite = Label(fightWindow)
                 Enemy_sprite.grid(row=0, column=2)
                 fightWindow.after(0, update, 0)
+
+                storyButton = Button(fightWindow, text="Learn the Story", command=story)
+                storyButton.grid(row=2, column=2)
                 
                 fightLabel = Label(fightWindow, text='Pick an action for this turn!') 
                 fightLabel.grid(row=1, column=2) 
