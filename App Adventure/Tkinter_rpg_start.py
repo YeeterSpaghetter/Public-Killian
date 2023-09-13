@@ -16,22 +16,22 @@ from importlib import util
 from tokenize import *
 
 def YNquestion(questionString): #putting the code necessary for the GUI into a function allows it to be called every time the quesiton is asked
-    pygame.mixer.music.load("Sfx\click.mp3")
+    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
     pygame.mixer.music.play()
     global answer #allows the vaiable to be used anywhere in the program 
     def yes_command(): #called by the GUI to change the variable when the button is clicked
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         answer.set('yes') #.set allows this to exit the GUI as it is a gloabal variable
         window.destroy() #closes the GUI window so the program does no become stuck
     def no_command(): #similar to the procedure above but sets the variable to 'no'
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         answer.set('no')
         window.destroy()
     
     window = tk.Tk() #creates GUI window 
-    
+    window.title('Flee')
     yes_no_label = Label(window, text=questionString) # sets label within GUI specified as 'window', set to the string specified when called so this can be used in multiple ways such as in tic tac toe or setting gender of character
     yes_no_label.grid(row=0, column=1) # Label in GUI
     
@@ -52,7 +52,7 @@ global armor
 
 health = 20 # stats altered thru fight
 energy = 10
-weapon = 'Rusty Old Sword' 
+weapon = 'Awesome Cool Dude Sword' 
 necklace = "Mother's Pendant" # used to assign damage done by user during their turn
 boots = 'Well Worn Boots' # used to assign chance to dodge for user
 armor = 1
@@ -67,10 +67,10 @@ def fight(enemy):
     def endTurn():#finishes the user's turn
         print('end turn called')
         #fightWindow.destroy()#closes the GUI used to fight
-        #turn.set(False)#ends the turn so the enemy can attack
+        turn.set(False)#ends the turn so the enemy can attack
         
     def enemies(enemy):
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         if enemy == 'bananer':
             global eHealth
@@ -78,7 +78,7 @@ def fight(enemy):
         return eHealth
             
     def eAtt(enemy, health):#called when it is the enemy's turn
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         if enemy == 'bananer':#used to calculate possible damage output and flavour text when attacking
             gFlavTxt = random.choice(["It attacks wildly!", "It attacks without skill!", "It aims it's weapon nervously!"])#flavour text chosen randomly
@@ -89,14 +89,14 @@ def fight(enemy):
     
     #section that decides how much damage is beign done by a regular attack    
     def attPwr(weapon):#branches to test how much damage should be done each turn
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
-        if weapon == 'Rusty Old Sword':
+        if weapon == 'Awesome Cool Dude Sword':
             global damage
             damage = 5
             
     def att(health, enemy, eHealth): #command assigned to GUI button
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         endTurn()
         attPwr(weapon)
@@ -106,18 +106,20 @@ def fight(enemy):
             if enemy == 'bananer': #will output different text depending on enemy
                 gFlavTxt = random.choice(["It screams wildly!", "It recoils in fear!", "It fails to defend!"])
                 print(gFlavTxt)
+        else:
+            print('Enemy is already dead')
         turn.set(eHealth)
             
     # section that decides how much damage is done my a magic attack
     def magPwr(necklace): # branches to test how much damage should be done each turn
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         if necklace == "Mother's Pendant":
             global damage
             damage = 10
             
     def mag(health, enemy, eHealth): 
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         endTurn()
         magPwr(necklace) # decides how much damage should be done when the attack is used
@@ -131,7 +133,7 @@ def fight(enemy):
                 
     # inv system
     def checkHealth(health): # validates stats to make sure the user canot go above maximum health
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         if health > 20:
             health = 20
@@ -141,7 +143,7 @@ def fight(enemy):
             energy = 10
             return energy
     def inv(health, energy):
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         def close():
             window.destroy()
@@ -196,7 +198,7 @@ def fight(enemy):
             dodge = random.choice(['y','y','n','n']) # 50/50 chances to flee
             
     def flee(enemy, boots):
-        pygame.mixer.music.load("Sfx\click.mp3")
+        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
         pygame.mixer.music.play()
         if boots == 'Well Worn Boots':
             print('You Have a 50% Chance to Escape.')
@@ -224,57 +226,48 @@ def fight(enemy):
         while int(eHealth) > 0: # continues fighting if enemy is alive
             while turn == True: # allows users to make their decision 
                 fightWindow = tk.Tk()
-                fightWindow.geometry('330x120')
+                fightWindow.geometry('330x150')
                 fightWindow.title('Bananer')
                 pyexec = sys.executable
 
                 def story():
+                    global gogo
+                    gogo=0
                     storyWindow = tk.Tk()
                     storyWindow.geometry('1080x120')
                     storyWindow.title('Story')
-                
-                    storyLabel1 = Label(storyWindow, text='Long ago, in a small village in Russia,')
-                    storyLabel1.grid(row=1, column=1)
-                    
-                    def go():
-                        time.sleep(1)
-                        storyLabel2 = Label(storyWindow, text="You were a young boy who often ran around the woods to caese your bordedom,")
-                        storyLabel2.grid(row=1, column=2)
-                        continueButton1.destroy
-                    def go2():
-                        time.sleep(1)
-                        storyLabel3 = Label(storyWindow, text='One day when you were doing this, you fell down into a bush,')
-                        storyLabel3.grid(row=1, column=3)
-                        continueButton2.destroy
-                        
-                    continueButton1 = Button(storyWindow, text='Continue1', command=go)
-                    continueButton1.grid(row=2, column=1)
-                    continueButton2 = Button(storyWindow, text='Continue2', command=go2)
-                    continueButton2.grid(row=2, column=2)
+                    display = Label(storyWindow, text="Long ago, in a small village in Russia,")
+                    display.grid(row=1, column=1)
+
+                    def _change():
+                        if button.counter == 0:
+                            display.config(text="You were a young boy who often ran around the woods to caese your bordedom,")
+                        elif button.counter == 1:
+                            display.config(text="You trip on a tree root sticking out of the ground, and begin to fall into a bush")
+                        else:
+                            display.config(text="You feel one of the leaves prick your back, with a strange liquid on it, and you pass out as you slowly submerge into the bush")
+                        if button.counter != 2:
+                            button.counter += 1
+                        else:
+                            def poopy():
+                                pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                                pygame.mixer.music.play()
+                                storyWindow.destroy()
+                            button2 = Button(storyWindow, text='Go back to battle', command=poopy)
+                            button2.grid(row=3, column=2)
+
+                    button = Button(storyWindow,text="Press me",command=_change)
+                    button.counter = 0
+                    button.grid(row=2, column=1)
+                    storyWindow.mainloop()
                 
                 def exit():
-                    pygame.mixer.music.load("Sfx\click.mp3")
+                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
                     pygame.mixer.music.play()
                     fightWindow.destroy()
-
-                class python3Execfile(object):
-                    def _get_file_encoding(self, filename):
-                        with open(filename, 'rb') as fp:
-                            try:
-                                return tokenize.detect_encoding(fp.readline)[0]
-                            except SyntaxError:
-                                return "utf-8"
-                            
-                def my_execfile(filename):
-                    globals['__file__'] = filename
-                    with open(filename, 'r', encoding=Self._get_file_encoding(filename)) as fp:
-                        contents = fp.read()
-                        if not contents.endswith("\n"):
-                            contents += "\n"
-                            exec(contents, globals, globals)
                                 
                 def goobly():
-                    pygame.mixer.music.load("Sfx\click.mp3")
+                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
                     pygame.mixer.music.play()
                     spec = util.spec_from_file_location('Goobly.py', 'Goobly.py')
                     module = util.module_from_spec(spec)
@@ -282,7 +275,7 @@ def fight(enemy):
                     return module
                 
                 def yorble():
-                    pygame.mixer.music.load("Sfx\click.mp3")
+                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
                     pygame.mixer.music.play()
                     spec = util.spec_from_file_location('Yorble.py', 'Yorble.py')
                     module = util.module_from_spec(spec)
@@ -290,7 +283,7 @@ def fight(enemy):
                     return module
                 
                 def bloober():
-                    pygame.mixer.music.load("Sfx\click.mp3")
+                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
                     pygame.mixer.music.play()
                     spec = util.spec_from_file_location('bloober.py', 'Bloober.py')
                     module = util.module_from_spec(spec)
@@ -313,7 +306,7 @@ def fight(enemy):
                 
                 frameCnt = 10
                 #frames = [PhotoImage(file='Enemies\Bananer\Bananaer.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
-                frames = [PhotoImage(file='Enemies\Bananer\Bananaer.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
+                frames = [PhotoImage(file='App Adventure\Enemies\Bananer\Bananaer.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
                 def update(ind):
 
@@ -353,7 +346,16 @@ def fight(enemy):
                 eAtt(enemy, health)        
         
     else:
-        fightLabel.config(fightWindow, text='You defeated the enemy!(Go to Other Battles tab to continue on)')
-
+        def victory():
+            pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+            pygame.mixer.music.play()
+            youwin.destroy()
+        youwin = tk.Tk()
+        youwin.title('You Won!')
+        fightLabel2 = Label(youwin, text='You defeated the enemy!(Go to Other Battles tab to continue on)')
+        fightLabel2.grid(row=1, column=2)
+        leavebutton = Button(youwin, text='Leave', command=victory)
+        leavebutton.grid(row=2, column=2)
+        youwin.mainloop()
 
 fight('bananer')

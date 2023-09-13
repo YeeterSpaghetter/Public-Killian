@@ -16,13 +16,13 @@ import pygame
 def YNquestion(questionString): 
     global answer 
     def yes_command(): 
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play()
+        
+
         answer.set('yes') 
         window.destroy() 
     def no_command():
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play() 
+        
+        
         answer.set('no')
         window.destroy()
     
@@ -60,8 +60,8 @@ def fight(enemy):
         
         
     def enemies(enemy):
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play()
+        
+
         if enemy == 'goobly':
             global eHealth
         eHealth = 10
@@ -82,8 +82,8 @@ def fight(enemy):
             damage = 5
             
     def att(health, enemy, eHealth):
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play() 
+        
+        
         endTurn()
         attPwr(weapon)
         eHealth -= damage
@@ -100,8 +100,8 @@ def fight(enemy):
             damage = 10
             
     def mag(health, enemy, eHealth): 
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play()
+        
+
         endTurn()
         magPwr(necklace)
         eHealth -= damage 
@@ -173,8 +173,8 @@ def fight(enemy):
             dodge = random.choice(['y','y','y','n','n','n']) 
             
     def flee(enemy, boots):
-        pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-        pygame.mixer.music.play()
+        
+
         if boots == 'Well Worn Boots':
             print('You have a 30% chance to escape.')
         if enemy != 'gBoss': 
@@ -204,8 +204,8 @@ def fight(enemy):
             
                 def exit():
                     fightWindow.destroy()
-                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-                    pygame.mixer.music.play()
+                    
+            
                     
                 class python3Execfile(object):
                     def _get_file_encoding(self, filename):
@@ -224,24 +224,24 @@ def fight(enemy):
                             exec(contents, globals, globals)
                                 
                 def bananer():
-                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-                    pygame.mixer.music.play()    
+                    
+                       
                     spec = util.spec_from_file_location('Tkinter_rpg_start.py', 'App Adventure\Tkinter_rpg_start.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
                     return module
                 
                 def bloober():
-                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-                    pygame.mixer.music.play()
+                    
+            
                     spec = util.spec_from_file_location('bloober.py', 'App Adventure\Bloober.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
                     return module
                 
                 def yorble():
-                    pygame.mixer.music.load("App Adventure\Sfx\click.mp3")
-                    pygame.mixer.music.play()
+                    
+            
                     spec = util.spec_from_file_location('Yorble.py', 'App Adventure\Yorble.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
