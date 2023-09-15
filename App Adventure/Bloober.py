@@ -1,4 +1,5 @@
-# Bloober
+#Bloober
+
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -17,16 +18,16 @@ from importlib import util
 from tokenize import *
 
 def YNquestion(questionString): #putting the code necessary for the GUI into a function allows it to be called every time the quesiton is asked
-    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+    pygame.mixer.music.load("Sfx/click.mp3")
     pygame.mixer.music.play()
     global answer #allows the vaiable to be used anywhere in the program 
     def yes_command(): #called by the GUI to change the variable when the button is clicked
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         answer.set('yes') #.set allows this to exit the GUI as it is a gloabal variable
         window.destroy() #closes the GUI window so the program does no become stuck
     def no_command(): #similar to the procedure above but sets the variable to 'no'
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         answer.set('no')
         window.destroy()
@@ -51,7 +52,7 @@ global health # needs to be used anywhere
 global energy
 global armor
 
-health = 30 # stats altered thru fight
+health = 20 # stats altered thru fight
 energy = 10
 weapon = 'Awesome Cool Dude Sword' 
 necklace = "Mother's Pendant" # used to assign damage done by user during their turn
@@ -71,33 +72,33 @@ def fight(enemy):
         turn.set(False)#ends the turn so the enemy can attack
         
     def enemies(enemy):
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if enemy == 'bloober':
             global eHealth
-        eHealth = 20
+        eHealth = 10
         return eHealth
             
     def eAtt(enemy, health):#called when it is the enemy's turn
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if enemy == 'bloober':#used to calculate possible damage output and flavour text when attacking
             gFlavTxt = random.choice(["It attacks wildly!", "It attacks without skill!", "It aims it's weapon nervously!"])#flavour text chosen randomly
             print(gFlavTxt)#flavour text outputted
             health = health - (3 - armor)#takes away a certain amount of health, with this lessoned by the amount of armour the user has
             print ('You have '+ str(health)+' health left!')
-    turn = True
+        turn = True
     
     #section that decides how much damage is beign done by a regular attack    
     def attPwr(weapon):#branches to test how much damage should be done each turn
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if weapon == 'Awesome Cool Dude Sword':
             global damage
-            damage = 7
+            damage = 5
             
     def att(health, enemy, eHealth): #command assigned to GUI button
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         endTurn()
         attPwr(weapon)
@@ -109,18 +110,18 @@ def fight(enemy):
                 print(gFlavTxt)
         else:
             print('Enemy is already dead')
-            turn.set(eHealth)
+        turn.set(eHealth)
             
     # section that decides how much damage is done my a magic attack
     def magPwr(necklace): # branches to test how much damage should be done each turn
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if necklace == "Mother's Pendant":
             global damage
             damage = 10
             
     def mag(health, enemy, eHealth): 
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         endTurn()
         magPwr(necklace) # decides how much damage should be done when the attack is used
@@ -134,7 +135,7 @@ def fight(enemy):
                 
     # inv system
     def checkHealth(health): # validates stats to make sure the user canot go above maximum health
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if health > 20:
             health = 20
@@ -144,7 +145,7 @@ def fight(enemy):
             energy = 10
             return energy
     def inv(health, energy):
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         def close():
             window.destroy()
@@ -157,7 +158,8 @@ def fight(enemy):
             window.destroy()
             turn.set('False')
         
-        window = tk.Tk() # GUI window 
+        window = tk.Tk() # GUI window
+        window.title('Inventory') 
         
         itemText=StringVar() # allows variable to be used outside of program 
         turn=StringVar()
@@ -199,7 +201,7 @@ def fight(enemy):
             dodge = random.choice(['y','y','n','n']) # 50/50 chances to flee
             
     def flee(enemy, boots):
-        pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+        pygame.mixer.music.load("Sfx/click.mp3")
         pygame.mixer.music.play()
         if boots == 'Well Worn Boots':
             print('You Have a 50% Chance to Escape.')
@@ -235,7 +237,7 @@ def fight(enemy):
                     global gogo
                     gogo=0
                     storyWindow = tk.Tk()
-                    storyWindow.geometry('1080x120')
+                    storyWindow.geometry('770x120')
                     storyWindow.title('Story')
                     display = Label(storyWindow, text="Long ago, in a small village in Russia,")
                     display.grid(row=1, column=1)
@@ -251,7 +253,7 @@ def fight(enemy):
                             button.counter += 1
                         else:
                             def poopy():
-                                pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                                pygame.mixer.music.load("Sfx/click.mp3")
                                 pygame.mixer.music.play()
                                 storyWindow.destroy()
                             button2 = Button(storyWindow, text='Go back to battle', command=poopy)
@@ -263,30 +265,30 @@ def fight(enemy):
                     storyWindow.mainloop()
                 
                 def exit():
-                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                    pygame.mixer.music.load("Sfx/click.mp3")
                     pygame.mixer.music.play()
                     fightWindow.destroy()
                                 
                 def goobly():
-                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                    pygame.mixer.music.load("Sfx/click.mp3")
                     pygame.mixer.music.play()
-                    spec = util.spec_from_file_location('Goobly.py', 'App Adventure\Goobly.py')
+                    spec = util.spec_from_file_location('Goobly.py', 'Goobly.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
                     return module
                 
                 def yorble():
-                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                    pygame.mixer.music.load("Sfx/click.mp3")
                     pygame.mixer.music.play()
-                    spec = util.spec_from_file_location('Yorble.py', 'App Adventure\Yorble.py')
+                    spec = util.spec_from_file_location('Yorble.py', 'Yorble.py')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
                     return module
                 
                 def bloober():
-                    pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+                    pygame.mixer.music.load("Sfx/click.mp3")
                     pygame.mixer.music.play()
-                    spec = util.spec_from_file_location('Bloober.py', 'App Adventure\Bloober.py')
+                    spec = util.spec_from_file_location('Bloober.py', 'Bloober')
                     module = util.module_from_spec(spec)
                     spec.loader.exec_module(module)
                     return module
@@ -306,8 +308,8 @@ def fight(enemy):
                 turn = StringVar()
                 
                 frameCnt = 10
-                #frames = [PhotoImage(file='Enemies\Bloober\Bloober.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
-                frames = [PhotoImage(file='App Adventure/Enemies/Bloober/Bloober.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
+                #frames = [PhotoImage(file='Enemies\bloober\Bananaer.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
+                frames = [PhotoImage(file='Enemies\Bloober\Bloober.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
                 def update(ind):
 
@@ -348,7 +350,7 @@ def fight(enemy):
         
     else:
         def victory():
-            pygame.mixer.music.load("App Adventure/Sfx/click.mp3")
+            pygame.mixer.music.load("Sfx/click.mp3")
             pygame.mixer.music.play()
             youwin.destroy()
         youwin = tk.Tk()
